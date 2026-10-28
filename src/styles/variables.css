@@ -1,0 +1,47 @@
+:root {
+  /* Core Brand Colors */
+  --color-bg: #F4F0E8;                /* Warm ivory page background */
+  --color-white: #FFFFFF;             /* Crisp clean white */
+  --color-text-main: #35291F;         /* Dark brown primary text & headings */
+  --color-text-secondary: #65574A;    /* Secondary warm brown for body & captions */
+  --color-text-light: #8A7B6E;        /* Subtle tertiary brown */
+  --color-primary: #70482F;           /* Primary button & brand highlight */
+  --color-primary-hover: #563622;     /* Darker brown on hover */
+  --color-primary-subtle: #EFE7DE;    /* Light tint for tags & badges */
+  --color-primary-border: #CBB9A8;    /* Soft primary border */
+  
+  /* Surface & Border Colors */
+  --color-border: #E2DDD2;            /* Light neutral border */
+  --color-border-subtle: #ECE8DE;     /* Very faint separation lines */
+  --color-surface: #FFFFFF;           /* Card & panel background */
+  --color-surface-warm: #FAF8F4;      /* Slightly warm card background */
+  --color-surface-alt: #EFEBE2;       /* Secondary neutral container */
+  --color-accent-gold: #AF844A;       /* Architectural warm metallic accent */
+  --color-accent-subtle: #F5EFE4;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Elevation & Shadows */
+  --shadow-subtle: 0 2px 8px rgba(53, 41, 31, 0.04);
+  --shadow-sm: 0 4px 12px rgba(53, 41, 31, 0.06);
+  --shadow-md: 0 8px 24px rgba(53, 41, 31, 0.08);
+  --shadow-lg: 0 16px 40px rgba(53, 41, 31, 0.12);
+
+  /* Layout */
+  --max-width: 1220px;
+  --header-height: 80px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
