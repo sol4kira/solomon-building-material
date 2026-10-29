@@ -208,20 +208,20 @@ export const products = [
     name: "Furniture Accessories & Fittings",
     category: "Handles & Accessories",
     featured: true,
-    description: "Essential cabinet fittings and workshop accessories including shelf pins, push-to-open latches, corner brackets, wardrobe hanging rails, and assembly screws.",
-    image: accessoryShelfPinsImg,
+    description: "Essential cabinet fittings and workshop accessories including cabinet legs, door stoppers, lift-up openers, shelf support pins, decorative screw caps, wardrobe rails, and screws.",
+    image: accessoryLatchesBracketsImg,
     options: [
       {
-        id: "accessory-shelf-pins-glides",
-        name: "Shelf Support Pins & Floor Glides",
-        image: accessoryShelfPinsImg,
-        description: "Clear acrylic shelf brackets with steel pins, nail-in felt furniture glides, white floor glides, and screw hole cover caps."
+        id: "accessory-cabinet-legs-doorstoppers-liftup",
+        name: "Cabinet Legs, Door Stoppers & Lift-Up Openers",
+        image: accessoryLatchesBracketsImg,
+        description: "Cabinet door stoppers, magnetic lift-up openers, push-to-open touch latches, and heavy-duty 90-degree steel angle corner braces."
       },
       {
-        id: "accessory-push-latches-brackets",
-        name: "Push-to-Open Latches & Corner Braces",
-        image: accessoryLatchesBracketsImg,
-        description: "Magnetic touch push-open latches for handle-free doors, and heavy-duty 90-degree steel L-bracket angle corner braces with mounting screws."
+        id: "accessory-pins-shelf-support-screw-caps",
+        name: "Pins, Shelf Supports & Decorative Screw Caps",
+        image: accessoryShelfPinsImg,
+        description: "Clear acrylic shelf support pins with steel dowels, cabinet leg nail glides, floor protectors, and snap-on decorative screw cover caps."
       },
       {
         id: "accessory-wardrobe-rail",
