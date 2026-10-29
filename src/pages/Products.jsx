@@ -18,6 +18,20 @@ export default function Products() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [initialOptionId, setInitialOptionId] = useState(null);
+
+  const handleSelectProduct = (product) => {
+    let matchedOptId = null;
+    if (searchQuery && product.options) {
+      const q = searchQuery.trim().toLowerCase();
+      const matched = product.options.find(opt => 
+        opt.name.toLowerCase().includes(q) || (opt.description && opt.description.toLowerCase().includes(q))
+      );
+      if (matched) matchedOptId = matched.id;
+    }
+    setSelectedProduct(product);
+    setInitialOptionId(matchedOptId || (product.options ? product.options[0].id : null));
+  };
 
   const handleCategorySelect = (category) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -36,21 +50,24 @@ export default function Products() {
     setSearchParams(nextParams);
   };
 
-  // Filter products by category and search query
+  // Filter products by category and search query (matching both product info and option names/descriptions)
   const filteredProducts = useMemo(() => {
     return products.filter((item) => {
       // Category match
       const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
 
-      // Search match (name, description, category, or specifications)
+      // Search match
       const q = searchQuery.trim().toLowerCase();
       if (!q) return matchesCategory;
 
       const nameMatch = item.name.toLowerCase().includes(q);
       const descMatch = item.description ? item.description.toLowerCase().includes(q) : false;
       const catMatch = item.category.toLowerCase().includes(q);
+      const optionsMatch = item.options ? item.options.some(opt => 
+        opt.name.toLowerCase().includes(q) || (opt.description && opt.description.toLowerCase().includes(q))
+      ) : false;
 
-      return matchesCategory && (nameMatch || descMatch || catMatch);
+      return matchesCategory && (nameMatch || descMatch || catMatch || optionsMatch);
     });
   }, [selectedCategory, searchQuery]);
 
@@ -142,7 +159,7 @@ export default function Products() {
               <ProductCard
                 key={product.id}
                 product={product}
-                onSelect={(prod) => setSelectedProduct(prod)}
+                onSelect={handleSelectProduct}
               />
             ))}
           </div>
@@ -164,7 +181,11 @@ export default function Products() {
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
+          initialOptionId={initialOptionId}
+          onClose={() => {
+            setSelectedProduct(null);
+            setInitialOptionId(null);
+          }}
         />
       )}
     </div>

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Eye } from 'lucide-react';
+import { Eye, Layers } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
 import Button from './Button';
 
 export default function ProductCard({ product, onSelect }) {
-  const { name, category, description, image } = product;
+  const { name, category, description, image, options } = product;
+  const hasOptions = options && options.length > 1;
 
   return (
     <article className="product-card">
@@ -20,6 +21,13 @@ export default function ProductCard({ product, onSelect }) {
           fallbackText={category}
         />
         <span className="product-card-category">{category}</span>
+
+        {hasOptions && (
+          <span className="product-card-options-pill" title={`${options.length} options available`}>
+            <Layers size={12} />
+            <span>{options.length} Types</span>
+          </span>
+        )}
       </div>
 
       <div className="product-card-body">
@@ -30,6 +38,15 @@ export default function ProductCard({ product, onSelect }) {
         >
           {name}
         </h3>
+
+        {hasOptions && (
+          <div className="product-card-options-summary">
+            <span className="options-badge">{options.length} Options</span>
+            <span className="options-preview-text" title={options.map(o => o.name).join(', ')}>
+              {options.map(o => o.name.replace(/\s*\([^)]*\)/, '')).join(' · ')}
+            </span>
+          </div>
+        )}
 
         {description && (
           <p className="product-card-desc">{description}</p>
@@ -44,7 +61,7 @@ export default function ProductCard({ product, onSelect }) {
             fullWidth
             onClick={() => onSelect && onSelect(product)}
           >
-            View Details
+            {hasOptions ? `View Details & ${options.length} Options` : 'View Details'}
           </Button>
         </div>
       </div>
