@@ -48,16 +48,16 @@ export default function About() {
                 Supplying the Building Blocks of Fine Cabinetry
               </h2>
               <p>
-                At {businessInfo.name}, we believe good furniture starts with the right substrate, proper surface finishes, and dependable hardware. As a family-owned business, we work closely with local carpenters, cabinet makers, and contractors who need reliable supplies for their daily craft.
+                At {businessInfo.name}, we believe good furniture starts with the right substrate, proper surface finishes, and dependable hardware. As a family-owned business, we work closely with local carpenters, interior designers, and contractors who need reliable supplies for their daily craft.
               </p>
               <p>
-                Our shop is focused specifically on furniture-making, cabinetry, and interior finishing:
+                Our shop is focused specifically on furniture-making, and interior finishing:
               </p>
               
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.625rem', marginTop: '0.5rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>MDF Boards:</strong> Raw MDF sheets, moisture-resistant (MR Green), and melamine-faced panels.</span>
+                  <span><strong>MDF Boards:</strong> Raw MDF sheets and laminated sheets.</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
@@ -69,7 +69,7 @@ export default function About() {
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>Wood Paints &amp; Glues:</strong> Mido siller sanding sealer, clear lacquer, CM Mastish wood filler, and Cola wood glue.</span>
+                  <span><strong>Wood Paints &amp; Glues:</strong>Siller sanding sealer, clear lacquer,Adhesives, and wood glue.</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
@@ -131,7 +131,7 @@ export default function About() {
               </div>
               <h3 style={{ fontSize: '1.125rem' }}>Carpenters</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Reliable raw and moisture-resistant MDF boards, plywood, edge banding, and fast-setting cola adhesive for daily projects.
+                Reliable raw and moisture-resistant MDF boards, edge banding, and fast-setting adhesive for daily projects.
               </p>
             </div>
 
@@ -151,7 +151,7 @@ export default function About() {
               </div>
               <h3 style={{ fontSize: '1.125rem' }}>Interior Contractors</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Consistent decorative panels, feature wall surfaces, commercial hardware, and wardrobe fittings for fitout jobs.
+                Consistent decorative panels, feature wall surfaces, commercial hardware, and wardrobe fittings for flawless works.
               </p>
             </div>
 
@@ -161,7 +161,7 @@ export default function About() {
               </div>
               <h3 style={{ fontSize: '1.125rem' }}>Finishers &amp; Polishers</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Siller sanding sealer for sealing wood pores, protective clear lacquer for gloss finishes, and Mastish wood filler for flawless repairs.
+                Siller sanding sealer for sealing wood pores, protective clear lacquer for gloss finishes, and Adhesives for flawless repairs.
               </p>
             </div>
 

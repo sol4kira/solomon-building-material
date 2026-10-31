@@ -13,7 +13,7 @@ export const businessInfo = {
   shortName: "Solomon",
   tagline: "BUILDING MATERIALS",
   subtitle: "Furniture Boards, UV Panels, Edge Banding, Wood Paints & Hardware",
-  description: "A trusted family-owned shop providing MDF boards, UV decorative panels, PVC and UV edge banding, wood paints (siller, lacquer, cola, mastish), and furniture hardware.",
+  description: "A trusted family-owned shop providing MDF boards, UV decorative panels, PVC and UV edge banding, wood paints, adhesives and furniture hardware and accessories.",
 
   // Contact Details
   phones: [
@@ -38,11 +38,12 @@ export const businessInfo = {
 
   // Physical Location
   address: {
-    street: "Building Materials Commercial Zone",
+    street: "Mundy St ",
     cityStateZip: "Main Showroom Row, Addis Ababa",
+    city:"Adiss Abeba",
     country: "Ethiopia",
-    note: "Visitors welcome. Call or message us before visiting to confirm stock availability.",
-    googleMapsUrl: "https://maps.google.com/?q=Solomon+Building+Materials+Addis+Ababa",
+    note: "Visitors welcome. Call or message for any inquiry",
+    googleMapsUrl: "https://www.google.com/maps/place/Solomon+Building+Materials/@9.027201,38.6121344,12z/data=!4m10!1m2!2m1!1ssolomon+building+materials!3m6!1s0x164b85006d93969d:0xf970781a75213a3c!8m2!3d9.027201!4d38.75633!15sChpzb2xvbW9uIGJ1aWxkaW5nIG1hdGVyaWFsc5IBGGJ1aWxkaW5nX21hdGVyaWFsc19zdG9yZeABAA!16s%2Fg%2F11z_36c2l5",
   },
 
   // Operating Hours

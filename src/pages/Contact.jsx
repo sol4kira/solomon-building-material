@@ -22,7 +22,7 @@ export default function Contact() {
             Contact {businessInfo.name}
           </h1>
           <p className="section-subtitle">
-            Visit our showroom or get in touch for questions regarding MDF boards, UV decorative panels, PVC and UV edge banding, wood paints (siller, lacquer, mastish, cola), and hardware.
+            Visit our showroom or get in touch for questions regarding MDF boards, UV decorative panels, PVC and UV edge banding, wood paints, adhesives, and furniture accessories.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function Contact() {
             </div>
             <h2 className="contact-card-title">Showroom Location</h2>
             <p className="contact-card-detail">
-              <strong>{businessInfo.address.street}</strong><br />
+              <strong>{businessInfo.address.street} {businessInfo.address.city},{businessInfo.address.country}</strong><br />
               {businessInfo.address.cityStateZip}<br />
               <span style={{ fontSize: '0.8125rem', color: 'var(--color-text-light)' }}>
                 {businessInfo.address.note}
@@ -108,6 +108,7 @@ export default function Contact() {
                   variant="outline"
                   size="sm"
                   target="_blank"
+                  rel="noopener noreferrer"
                   icon={ExternalLink}
                   fullWidth
                 >

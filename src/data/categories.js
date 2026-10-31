@@ -15,7 +15,7 @@ export const featuredCategories = [
     title: "MDF & Wood Boards",
     slug: "mdf-wood-boards",
     targetFilter: "MDF & Wood Boards",
-    description: "Raw MDF, moisture-resistant (MR Green) boards, and commercial plywood sheets ready for fine carpentry.",
+    description: "Raw MDF, laminated and different thickness",
     image: mdfRawBoardImg,
     badge: "Core Boards"
   },
@@ -30,10 +30,10 @@ export const featuredCategories = [
   },
   {
     id: "wood-paints-adhesives",
-    title: "Wood Paints, Siller & Cola",
+    title: "Wood Paints & Adhesives",
     slug: "wood-paints-adhesives",
     targetFilter: "Wood Paints & Finishes",
-    description: "Mido sanding sealer (siller), clear lacquer topcoats, CM Mastish wood filler putty, and strong Cola wood glue.",
+    description: "Adhesives, Wood Glues, and Wood Paints",
     image: midoSealerImg,
     badge: "Paints & Glue"
   },
@@ -51,7 +51,7 @@ export const featuredCategories = [
     title: "Handles & Accessories",
     slug: "handles-accessories",
     targetFilter: "Handles & Accessories",
-    description: "Modern drawer handles, Lexi door handles, silver aluminum pulls, and cabinet accessories.",
+    description: "Modern drawer handles, silver aluminum pulls, and cabinet accessories.",
     image: drawerHandlesImg,
     badge: "Hardware & Trim"
   },

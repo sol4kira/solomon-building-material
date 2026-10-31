@@ -46,12 +46,6 @@ export const products = [
         image: mdfRawBoardImg,
         description: "High-density raw medium-density fiberboard with a smooth sanded surface. Perfect for CNC cutting, custom carpentry, shelving, and painted furniture projects."
       },
-      {
-        id: "mdf-moisture-resistant-green",
-        name: "Moisture Resistant (MR) Green MDF Board",
-        image: mdfGreenBoardImg,
-        description: "Specially formulated green-core moisture-resistant MDF board bonded with water-repellent resin. Ideal for kitchen cabinets, bathroom vanities, and humid environments."
-      }
     ]
   },
 
@@ -105,9 +99,9 @@ export const products = [
 
   // 4. Wood Paints & Finishes (Siller, Lacquer)
   {
-    id: "mido-wood-finishes",
-    name: "Mido Wood Paints & Finishes",
-    category: "Wood Paints & Finishes",
+    id: "wood-finishes",
+    name: "Wood Paints & Adhesives",
+    category: "Wood Paints & Adhesives",
     featured: true,
     description: "Wood finishing products for preparing and finishing furniture surfaces. Choose suitable products for surface preparation and the final appearance of your woodwork.",
     image: midoSealerImg,
@@ -129,18 +123,18 @@ export const products = [
 
   // 5. CM Mastish
   {
-    id: "cm-mastish-wood-filler",
-    name: "CM Mastish (Wood Mastic & Putty Filler)",
+    id: "adhesive",
+    name: "General purpose Adhesive",
     category: "Wood Paints & Finishes",
     featured: true,
-    description: "A wood filler used to fill small holes, cracks, and surface imperfections in woodwork before sanding and finishing. Suitable for furniture repairs, cabinetry, and carpentry projects.",
+    description: "general purpose adhesive, binding edge binding perfectly to the boards, and other binding usage",
     image: cmMastishImg
   },
 
   // 6. Cola Wood Glue
   {
-    id: "cola-wood-glue-heavy-duty",
-    name: "Cola (Carpenter's Heavy-Duty Wood Glue)",
+    id: "wood-glue",
+    name: "Heavy-Duty Wood Glue",
     category: "Wood Paints & Finishes",
     featured: true,
     description: "An adhesive used to join wooden components during furniture making and carpentry. Suitable for common woodworking tasks such as assembling furniture parts and joining wood surfaces. Check the product label for suitable materials and application instructions.",

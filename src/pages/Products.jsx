@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Search, X, AlertCircle } from 'lucide-react';
 import { products } from '../data/products';
 import { productCategories } from '../data/categories';
+import { businessInfo } from '../data/businessInfo';
 import ProductCard from '../components/ProductCard';
 import ProductModal from '../components/ProductModal';
 import Button from '../components/Button';
@@ -81,7 +82,7 @@ export default function Products() {
             Our Products
           </h1>
           <p className="section-subtitle">
-            Explore our curated selection of MDF &amp; wood boards, UV decorative panels, PVC &amp; UV edge banding, wood paints (siller, lacquer, mastish, cola), and cabinet hardware. Contact us on WhatsApp (251991445050) or call 0991445050 / 0911210767 for stock availability.
+            Explore our curated selection of MDF &amp; wood boards, UV decorative panels, PVC &amp; UV edge banding, wood paints and Furniture hardware and accessories . Contact us on WhatsApp (+{businessInfo.whatsappNumber}) or call {businessInfo.phoneDisplay} / {businessInfo.secondaryPhone} for stock availability.
           </p>
         </div>
 

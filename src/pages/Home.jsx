@@ -46,7 +46,7 @@ export default function Home() {
               </h1>
 
               <p className="hero-subtitle">
-                MDF boards, UV boards, PVC &amp; UV edge banding, wood paints (siller, lacquer, mastish, cola), and cabinet hardware in one place.
+                MDF boards, UV boards, PVC &amp; UV edge banding, wood paints, adhesives and cabinet hardware in one place.
               </p>
 
               <div className="hero-actions">
@@ -61,7 +61,7 @@ export default function Home() {
               <div className="hero-features">
                 <div className="hero-feature-item">
                   <CheckCircle2 size={18} className="hero-feature-icon" />
-                  <span>Physical showroom to visit</span>
+                  <span>Showroom to visit</span>
                 </div>
                 <div className="hero-feature-item">
                   <CheckCircle2 size={18} className="hero-feature-icon" />
@@ -103,7 +103,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Material Range"
             title="What We Sell"
-            subtitle="Browse our complete stock of furniture boards, high-gloss UV panels, matching edge banding, wood finishes, and cabinet fittings."
+            subtitle="Browse our complete stock of furniture boards, high-gloss UV panels, matching edge banding, wood finishes, and cabinet accessories."
             center
           />
 
@@ -129,7 +129,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Showroom Advantages"
             title={`Why Choose ${businessInfo.shortName}`}
-            subtitle="Supplying furniture makers, carpenters, and contractors with dependable materials."
+            subtitle="Supplying interior designers, carpenters, and contractors with dependable materials."
             center
           />
 
@@ -140,7 +140,7 @@ export default function Home() {
               </div>
               <h3 className="why-title">Range for Furniture Makers</h3>
               <p className="why-desc">
-                From raw and MR green MDF sheets to decorative UV marble boards, PVC edge banding, and joinery hardware.
+                From raw MDF boards to decorative UV marble boards, PVC edge banding, and joinery hardware.
               </p>
             </div>
 
@@ -148,9 +148,9 @@ export default function Home() {
               <div className="why-icon-box">
                 <Paintbrush size={24} />
               </div>
-              <h3 className="why-title">Wood Paints, Siller &amp; Cola</h3>
+              <h3 className="why-title">Wood Paints &amp; Adhesives</h3>
               <p className="why-desc">
-                We supply sanding siller, clear lacquer, wood mastish putty, and high-strength cola wood glue directly for workshop needs.
+                We supply sanding siller, clear lacquer, adhesive, and high-strength cola wood glue directly for workshop needs.
               </p>
             </div>
 
@@ -158,7 +158,7 @@ export default function Home() {
               <div className="why-icon-box">
                 <Store size={24} />
               </div>
-              <h3 className="why-title">A Physical Shop to Visit</h3>
+              <h3 className="why-title">A Shop to Visit</h3>
               <p className="why-desc">
                 Inspect physical board finishes, edge profile samples, and runner smooth glide in person at our showroom.
               </p>
@@ -168,9 +168,9 @@ export default function Home() {
               <div className="why-icon-box">
                 <PhoneCall size={24} />
               </div>
-              <h3 className="why-title">Direct Stock Confirmation</h3>
+              <h3 className="why-title">Direct contact</h3>
               <p className="why-desc">
-                Call {businessInfo.phoneDisplay} or {businessInfo.secondaryPhoneDisplay} for quick stock confirmation.
+                Call {businessInfo.phoneDisplay} or <br/> {businessInfo.secondaryPhoneDisplay} for direct contact.
               </p>
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function Home() {
             <div>
               <span className="section-eyebrow">Sample Selection</span>
               <h2 className="section-title" id="featured-heading">Featured Materials</h2>
-              <p className="section-subtitle">Curated boards, edge banding, paints, and hardware from our shop.</p>
+              <p className="section-subtitle">MDF board, Wood Panel, edge banding, paints, and hardware from our shop.</p>
             </div>
             <Button to="/products" variant="primary" icon={ArrowRight} iconPosition="right">
               View Complete Catalog
@@ -222,13 +222,13 @@ export default function Home() {
             <div className="about-preview-content">
               <span className="section-eyebrow">Our Story</span>
               <h2 className="section-title" id="about-preview-heading">
-                Dedicated to Woodcraft &amp; Furniture Makers
+                Dedicated to Furniture Makers &amp; interior designers
               </h2>
               <p>
-                {businessInfo.name} is a family-owned building materials shop founded to support furniture makers, cabinet workshops, contractors, and home DIYers with honest guidance and solid materials.
+                {businessInfo.name} is a family-owned building materials shop founded to provide furniture makers, interior designers, contractors, and home DIYers with honest guidance and quality materials.
               </p>
               <p>
-                Whether you need high-grade MDF boards, glossy UV panels, color-matched PVC/UV edge banding, siller, lacquer, mastish, or cola adhesive, we focus on reliable stock and direct personal service.
+                Whether you need high-grade MDF boards, UV panels, various adhesives. we can provide reliable stokes and delivery.
               </p>
               <div style={{ marginTop: '0.5rem' }}>
                 <Button to="/about" variant="secondary" icon={ArrowRight} iconPosition="right">
@@ -252,7 +252,7 @@ export default function Home() {
                 Ready to Start Your Furniture Project?
               </h2>
               <p className="section-subtitle">
-                Contact our showroom team to verify sheet availability, ask technical questions, or arrange pickup.
+                Contact our showroom.
               </p>
 
               <div className="contact-cta-actions">
