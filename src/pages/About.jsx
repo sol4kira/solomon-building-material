@@ -161,7 +161,7 @@ export default function About() {
               </div>
               <h3 style={{ fontSize: '1.125rem' }}>Finishers &amp; Polishers</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Mido siller sanding sealer for sealing wood pores, protective clear lacquer for gloss finishes, and CM Mastish wood filler for flawless repairs.
+                Siller sanding sealer for sealing wood pores, protective clear lacquer for gloss finishes, and Mastish wood filler for flawless repairs.
               </p>
             </div>
 

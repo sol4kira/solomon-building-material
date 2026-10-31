@@ -17,22 +17,22 @@ export const businessInfo = {
 
   // Contact Details
   phones: [
-    { number: "0991445050", display: "0991 44 50 50", raw: "0991445050" },
+    { number: "0940094545", display: "0940 09 45 45", raw: "0940094545" },
     { number: "0911210767", display: "0911 21 07 67", raw: "0911210767" }
   ],
-  phone: "0991445050",
-  phoneDisplay: "0991 44 50 50",
-  secondaryPhone: "0911210767",
-  secondaryPhoneDisplay: "0911 21 07 67",
+  phone: "0911210767",
+  phoneDisplay: "0911 21 07 67",
+  secondaryPhone: "0940094545",
+  secondaryPhoneDisplay: "0940 09 45 47",
 
   // Messaging (Direct account links without template messages)
-  whatsappNumber: "251991445050",
-  whatsappDisplay: "+251 99 144 5050",
-  getWhatsAppUrl: () => "https://wa.me/251991445050",
+  whatsappNumber: "251911210767",
+  whatsappDisplay: "+251 91 121 0767",
+  getWhatsAppUrl: () => "https://wa.me/251911210767",
 
-  telegramNumber: "251991445050",
-  telegramDisplay: "+251 99 144 5050",
-  getTelegramUrl: () => "https://t.me/+251991445050",
+  telegramNumber: "251911210767",
+  telegramDisplay: "+251 91 121 0767",
+  getTelegramUrl: () => "https://t.me/+251911210767",
 
   email: "contact@solomonbuildingmaterials.com",
 

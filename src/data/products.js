@@ -17,7 +17,12 @@ import colaWoodGlueImg from '../assets/products/cola-wood-glue.jpg';
 import hingeHydraulicImg from '../assets/products/hinge-hydraulic.jpg';
 import drawerSliderImg from '../assets/products/drawer-slider.jpg';
 import drawerHandlesImg from '../assets/products/drawer-handles.jpg';
-import lexiDoorHandleImg from '../assets/products/lexi-door-handle.jpg';
+import lexiDoorHandleImg from '../assets/products/Lexi-door-hanlde.jpg';
+import mainGaitPrimary from '../assets/products/maingate-primery.jpg';
+import mainGate from '../assets/products/maingate.jpg';
+import internalMainGate from '../assets/products/internal-main-gate.jpg';
+import Lexi2 from '../assets/products/lexi-2.jpg';
+import lexi3 from '../assets/products/lexi-3.jpg';
 import silverHandleImg from '../assets/products/silver-handle.jpg';
 import handlesCollectionImg from '../assets/products/handles-collection.jpg';
 import accessoryShelfPinsImg from '../assets/products/accessory-shelf-pins.jpg';
@@ -80,20 +85,20 @@ export const products = [
     name: "Edge Banding (PVC & UV)",
     category: "Edge Banding (PVC & UV)",
     featured: true,
-    description: "Professional edge sealing tapes designed to protect board edges from moisture and impact while matching board surfaces seamlessly.",
+    description: "Edge banding materials used to cover exposed edges of MDF and laminated boards. They give furniture a more finished appearance and help protect board edges during everyday use.",
     image: edgeBindingPvcImg,
     options: [
       {
         id: "edge-banding-pvc-standard",
         name: "Standard PVC Flexible Edge Banding",
         image: edgeBindingPvcImg,
-        description: "Impact-absorbing flexible PVC edge tape for sealing and protecting exposed board edges. Available in various widths, solid colors, and wood grain patterns."
+        description: "Flexible PVC edging for covering exposed board edges. Available in different colors and patterns to match furniture boards."
       },
       {
         id: "edge-banding-uv-gloss",
         name: "UV High-Gloss Matching Edge Banding",
         image: edgeBindingUvImg,
-        description: "Premium high-gloss UV edge banding tape specially color-matched to our high-gloss marble and acrylic UV panels. Delivers a seamless mirror-shine edge finish."
+        description: "Glossy edge banding designed to complement high-gloss decorative boards and create a consistent finish around furniture panels."
       }
     ]
   },
@@ -104,20 +109,20 @@ export const products = [
     name: "Mido Wood Paints & Finishes",
     category: "Wood Paints & Finishes",
     featured: true,
-    description: "Professional grade sanding sealer and crystal-clear wood lacquer for durable, satin or high-gloss protective furniture finishes.",
+    description: "Wood finishing products for preparing and finishing furniture surfaces. Choose suitable products for surface preparation and the final appearance of your woodwork.",
     image: midoSealerImg,
     options: [
       {
         id: "mido-siller-sanding-sealer",
         name: "Mido Siller (Wood Sanding Sealer)",
         image: midoSealerImg,
-        description: "Fast-drying professional wood sanding sealer. Seals open wood and MDF pores, prevents excessive paint absorption, and sands easily to an ultra-smooth base."
+        description: "A wood-finishing product used to prepare wooden surfaces before applying a topcoat. Helps seal the surface and create a smoother base for finishing."
       },
       {
         id: "mido-lacer-clear-lacquer",
         name: "Mido Lacer (Clear Wood Finish Lacquer)",
         image: midoLacquerImg,
-        description: "Premium clear protective wood lacquer topcoat. Leaves a crystal-clear, durable, moisture-resistant protective film with brilliant gloss or smooth satin sheen."
+        description: "A clear wood finish applied over prepared surfaces to give furniture a protective coating and a finished appearance. The final sheen depends on the specific product."
       }
     ]
   },
@@ -128,7 +133,7 @@ export const products = [
     name: "CM Mastish (Wood Mastic & Putty Filler)",
     category: "Wood Paints & Finishes",
     featured: true,
-    description: "Pliable, fast-curing wood mastic paste for filling knot holes, cracks, joint imperfections, and screw recesses on furniture boards before painting or sealing.",
+    description: "A wood filler used to fill small holes, cracks, and surface imperfections in woodwork before sanding and finishing. Suitable for furniture repairs, cabinetry, and carpentry projects.",
     image: cmMastishImg
   },
 
@@ -138,7 +143,7 @@ export const products = [
     name: "Cola (Carpenter's Heavy-Duty Wood Glue)",
     category: "Wood Paints & Finishes",
     featured: true,
-    description: "High-bond strength PVA white carpenter's wood adhesive. Rapid setting formula engineered for structural furniture joinery, dowel joints, and edge lamination.",
+    description: "An adhesive used to join wooden components during furniture making and carpentry. Suitable for common woodworking tasks such as assembling furniture parts and joining wood surfaces. Check the product label for suitable materials and application instructions.",
     image: colaWoodGlueImg
   },
 
@@ -148,20 +153,20 @@ export const products = [
     name: "Hinges & Drawer Runners",
     category: "Hinges & Sliders",
     featured: true,
-    description: "Cabinet motion hardware including hydraulic soft-close concealed hinges and telescopic ball-bearing drawer runners.",
+    description: "Furniture hardware for installing cabinet doors and building functional drawers. Choose from cabinet hinges and drawer runners for kitchen cabinets, wardrobes, storage units, and other furniture.",
     image: hingeHydraulicImg,
     options: [
       {
         id: "hinge-hydraulic-softclose",
         name: "Concealed Hydraulic Soft-Close Hinge",
         image: hingeHydraulicImg,
-        description: "Integrated silent hydraulic brass damper ensures smooth, quiet door closing every time. Features clip-on tool-free assembly and 3D cam adjustment."
+        description: "A concealed cabinet hinge with a soft-close mechanism, designed to help cabinet doors close more gently. Suitable for compatible cabinet doors."
       },
       {
         id: "drawer-slide-ballbearing",
         name: "Telescopic Full-Extension Ball Bearing Slides",
         image: drawerSliderImg,
-        description: "Heavy-duty 45mm profile 3-fold ball-bearing runners with smooth full-extension glide. High weight capacity with quick disconnect lever."
+        description: "Drawer runners that allow drawers to slide in and out smoothly. Full-extension models allow the drawer to open farther for easier access to its contents."
       }
     ]
   },
@@ -172,68 +177,103 @@ export const products = [
     name: "Cabinet & Door Handles",
     category: "Handles & Accessories",
     featured: true,
-    description: "Complete selection of contemporary and architectural handles, door levers, edge pulls, and minimalist knobs for wardrobes and kitchens.",
+    description: "Furniture handles and fittings for cabinets, drawers, wardrobes, and doors. Available in different designs and finishes to suit different furniture styles.",
     image: drawerHandlesImg,
     options: [
       {
         id: "drawer-handles-modern",
         name: "Modern Cabinet & Drawer Handles",
         image: drawerHandlesImg,
-        description: "Contemporary designer cabinet handles crafted for durability, sleek grip, and elegant finish on modern wardrobe and kitchen doors."
-      },
-      {
-        id: "lexi-door-handle",
-        name: "Lexi Door Handle",
-        image: lexiDoorHandleImg,
-        description: "Premium architectural door and cabinet handle with smooth ergonomic contour and lasting protective surface coat."
+        description: "Handles for kitchen cabinets, wardrobes, and drawers, available in different designs and finishes."
       },
       {
         id: "silver-aluminum-handle",
         name: "Silver Aluminum Edge & Bar Handle",
         image: silverHandleImg,
-        description: "Sleek anodized silver aluminum handle providing a clean, minimalist profile for modern drawers and cabinetry."
+        description: "A silver-finish aluminum handle for cabinets and drawers, suitable for furniture designs that use a simple, modern appearance."
       },
       {
         id: "handles-architectural-suite",
         name: "Designer Architectural Pulls & Knobs",
         image: handlesCollectionImg,
-        description: "Coordinated architectural suite of cabinet bar pulls, t-bars, and knobs in warm brushed brass, champagne, and matte bronze finishes."
+        description: "A selection of cabinet pulls and knobs in different shapes and finishes for drawers, wardrobes, and kitchen cabinets."
+      }
+    ]
+  },
+  //9. Main Gate & door handles
+  {
+    id: "main-gate-doors",
+    name:" Main Gate and Door Handles",
+    category:"Main Gate and Door Handles",
+    featured:true,
+    description: "Premium decorative door handle sets designed for main entrance doors and gates. Featuring long pull handles, matching knobs, and lock hardware in classic antique and metallic finishes. Ideal for wooden entrance doors, combining an elegant appearance with practical everyday use. Available in different designs and finishes, subject to stock availability.",
+    image:mainGaitPrimary,
+    options:[
+      {
+        id: "main-gate-handle",
+        name: "Main Gate",
+        image: mainGate,
+        description: "Decorative main gate handle sets designed for entrance doors and gates. Available in classic and ornamental designs with matching pull handles, knobs, and lock components. Built for everyday use, these sets combine a distinctive appearance with practical door access and security. Suitable for residential and commercial entrances."
+      },
+      {
+      id: "internal-main-gate",
+      name:"Internal Main Gate Handle",
+      image:internalMainGate,
+      description: "Practical and decorative handle sets designed for interior doors in bedrooms, bathrooms, offices, and other indoor spaces. Available in different styles and finishes, including lever handles, round knobs, and matching lock components. Suitable for everyday use in residential and commercial interiors.",
+      },
+      {
+      id: "lexi-door-handle",
+      name:"Internal Main Gate Handle",
+      image:lexiDoorHandleImg,
+      description: "Practical and decorative handle sets designed for interior doors in bedrooms, bathrooms, offices, and other indoor spaces. Available in different styles and finishes, including lever handles, round knobs, and matching lock components. Suitable for everyday use in residential and commercial interiors.",
+      },
+      {
+      id: "lexi-door-hanlde2",
+      name:"Internal Main Gate Hanlde",
+      image:Lexi2,
+      description: "Practical and decorative handle sets designed for interior doors in bedrooms, bathrooms, offices, and other indoor spaces. Available in different styles and finishes, including lever handles, round knobs, and matching lock components. Suitable for everyday use in residential and commercial interiors.",
+      },
+      {
+      id: "lexi-door-handle3",
+      name:"Internal Main Gate Hanlde",
+      image:lexi3,
+      description: "Practical and decorative handle sets designed for interior doors in bedrooms, bathrooms, offices, and other indoor spaces. Available in different styles and finishes, including lever handles, round knobs, and matching lock components. Suitable for everyday use in residential and commercial interiors.",
       }
     ]
   },
 
-  // 9. Furniture Accessories & Fittings
+  // 10. Furniture Accessories & Fittings
   {
     id: "furniture-accessories",
     name: "Furniture Accessories & Fittings",
     category: "Handles & Accessories",
     featured: true,
-    description: "Essential cabinet fittings and workshop accessories including cabinet legs, door stoppers, lift-up openers, shelf support pins, decorative screw caps, wardrobe rails, and screws.",
+    description: "Practical fittings and hardware for assembling, installing, and finishing furniture. This category includes shelf supports, wardrobe rails, screws, cabinet fittings, and other useful accessories.",
     image: accessoryLatchesBracketsImg,
     options: [
       {
         id: "accessory-cabinet-legs-doorstoppers-liftup",
         name: "Cabinet Legs, Door Stoppers & Lift-Up Openers",
-        image: accessoryLatchesBracketsImg,
-        description: "Cabinet door stoppers, magnetic lift-up openers, push-to-open touch latches, and heavy-duty 90-degree steel angle corner braces."
+        image: accessoryShelfPinsImg ,
+        description: "Furniture fittings used to support cabinets, stop doors, or assist with opening cabinet doors, depending on the selected accessory"
       },
       {
         id: "accessory-pins-shelf-support-screw-caps",
         name: "Pins, Shelf Supports & Decorative Screw Caps",
-        image: accessoryShelfPinsImg,
-        description: "Clear acrylic shelf support pins with steel dowels, cabinet leg nail glides, floor protectors, and snap-on decorative screw cover caps."
+        image:accessoryLatchesBracketsImg,
+        description: "Small fittings used to support shelves and cover exposed screw heads for a neater furniture finish"
       },
       {
         id: "accessory-wardrobe-rail",
         name: "Wardrobe Oval Hanging Rails & Brackets",
         image: wardrobeOvalRailImg,
-        description: "Fluted aluminum wardrobe oval clothes hanging rails available in white, champagne, and gold with matching heavy-duty end flange brackets."
+        description: "Rails and matching brackets designed for hanging clothes inside wardrobes and closets"
       },
       {
         id: "accessory-wood-screws",
         name: "Woodworking Screws & Fasteners",
         image: woodScrewsImg,
-        description: "Complete workshop assortment of countersunk wood screws, drywall screws, chipboard fasteners, and furniture connecting bolts."
+        description: "Fasteners used for joining and assembling suitable wood and furniture components. Select the appropriate screw type and size for the material and application."
       }
     ]
   }
