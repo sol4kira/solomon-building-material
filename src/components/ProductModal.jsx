@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { X, Phone, Check } from 'lucide-react';
 import { businessInfo } from '../data/businessInfo';
 import ImageWithFallback from './ImageWithFallback';
+import { useLanguage } from '../context/LanguageContext';
+import { productCategories } from '../data/categories';
 
 export default function ProductModal({ product, initialOptionId, onClose }) {
+  const { language, t } = useLanguage();
   const [prevProduct, setPrevProduct] = useState(product);
   const [selectedOptionId, setSelectedOptionId] = useState(
     initialOptionId || product?.options?.[0]?.id || null
@@ -35,9 +38,32 @@ export default function ProductModal({ product, initialOptionId, onClose }) {
     ? (product.options.find((opt) => opt.id === selectedOptionId) || product.options[0])
     : null;
 
+  const productName = typeof product.name === 'object' 
+    ? product.name[language] 
+    : product.name;
+
+  const productDescription = typeof product.description === 'object' 
+    ? product.description[language] 
+    : product.description;
+
+  const optionName = activeOption 
+    ? (typeof activeOption.name === 'object' ? activeOption.name[language] : activeOption.name)
+    : '';
+
+  const optionDescription = activeOption 
+    ? (typeof activeOption.description === 'object' ? activeOption.description[language] : activeOption.description)
+    : '';
+
   const currentImage = activeOption?.image || product.image;
-  const currentTitle = activeOption ? activeOption.name : product.name;
-  const currentDescription = activeOption?.description || product.description;
+  const currentTitle = activeOption ? optionName : productName;
+  const currentDescription = activeOption ? optionDescription : productDescription;
+
+  const categoryObj = productCategories.find(
+    (c) => c.id === product.categoryId || c.slug === product.categoryId
+  );
+  const categoryName = categoryObj 
+    ? categoryObj.name[language] 
+    : (typeof product.category === 'object' ? product.category[language] : (product.category || ''));
 
   return (
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -45,7 +71,7 @@ export default function ProductModal({ product, initialOptionId, onClose }) {
         <button 
           className="modal-close-btn" 
           onClick={onClose} 
-          aria-label="Close product details dialog"
+          aria-label={t('common.modalClose')}
         >
           <X size={20} />
         </button>
@@ -58,7 +84,7 @@ export default function ProductModal({ product, initialOptionId, onClose }) {
               src={currentImage}
               alt={currentTitle}
               className="product-modal-image"
-              fallbackText={product.category}
+              fallbackText={categoryName}
               style={{ width: '100%', height: '100%', maxHeight: '360px', objectFit: 'contain' }}
             />
           </div>
@@ -66,30 +92,33 @@ export default function ProductModal({ product, initialOptionId, onClose }) {
           {/* Modal Right: Details & Options */}
           <div className="modal-body">
             <div>
-              <span className="badge" style={{ marginBottom: '0.75rem' }}>
-                {product.category}
-              </span>
+              {categoryName && (
+                <span className="badge" style={{ marginBottom: '0.75rem' }}>
+                  {categoryName}
+                </span>
+              )}
               <h2 id="modal-title" style={{ fontSize: '1.4rem', marginBottom: '0.35rem', lineHeight: '1.25' }}>
                 {currentTitle}
               </h2>
               {hasOptions && activeOption && (
                 <div className="modal-parent-name">
-                  Part of <strong>{product.name}</strong> collection
+                  {t('common.modalPartOf', { name: productName })}
                 </div>
               )}
             </div>
 
-            {/* Options Selector: Rendered if matching options exist */}
+            {/* Options Selector */}
             {hasOptions && (
               <div className="modal-options-container">
                 <div className="modal-options-header">
                   <span className="modal-options-label">
-                    Available Types &amp; Options ({product.options.length}):
+                    {t('common.modalOptionsLabel', { count: product.options.length })}
                   </span>
                 </div>
                 <div className="modal-options-list">
                   {product.options.map((option) => {
                     const isSelected = option.id === activeOption.id;
+                    const optName = typeof option.name === 'object' ? option.name[language] : option.name;
                     return (
                       <button
                         key={option.id}
@@ -104,7 +133,7 @@ export default function ProductModal({ product, initialOptionId, onClose }) {
                           aria-hidden="true"
                           className="modal-option-thumb" 
                         />
-                        <span className="modal-option-name">{option.name}</span>
+                        <span className="modal-option-name">{optName}</span>
                         {isSelected && (
                           <span className="modal-option-check" aria-hidden="true">
                             <Check size={14} />
@@ -128,13 +157,13 @@ export default function ProductModal({ product, initialOptionId, onClose }) {
                 href={`tel:${businessInfo.phone}`}
                 className="btn btn-primary btn-sm"
               >
-                <Phone size={14} /> Call {businessInfo.phoneDisplay}
+                <Phone size={14} /> {t('nav.callNumber', { number: businessInfo.phoneDisplay })}
               </a>
               <a 
                 href={`tel:${businessInfo.secondaryPhone}`}
                 className="btn btn-secondary btn-sm"
               >
-                <Phone size={14} /> Call {businessInfo.secondaryPhoneDisplay}
+                <Phone size={14} /> {t('nav.callNumber', { number: businessInfo.secondaryPhoneDisplay })}
               </a>
             </div>
           </div>

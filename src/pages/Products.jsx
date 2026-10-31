@@ -7,15 +7,23 @@ import { businessInfo } from '../data/businessInfo';
 import ProductCard from '../components/ProductCard';
 import ProductModal from '../components/ProductModal';
 import Button from '../components/Button';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Products() {
+  const { language, t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryParam = searchParams.get('category');
 
-  // Derive selected category directly from URL parameter
-  const selectedCategory = categoryParam && productCategories.includes(categoryParam) 
-    ? categoryParam 
-    : "All";
+  // Derive selected category slug from URL parameter (supports slug or legacy name matching)
+  const matchedCategory = categoryParam 
+    ? productCategories.find(c => 
+        c.slug.toLowerCase() === categoryParam.toLowerCase() || 
+        c.id.toLowerCase() === categoryParam.toLowerCase() || 
+        (c.name && c.name.en && c.name.en.toLowerCase() === categoryParam.toLowerCase()) ||
+        (c.name && c.name.am && c.name.am.toLowerCase() === categoryParam.toLowerCase())
+      )
+    : null;
+  const selectedCategorySlug = matchedCategory ? matchedCategory.slug : 'all';
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -25,21 +33,23 @@ export default function Products() {
     let matchedOptId = null;
     if (searchQuery && product.options) {
       const q = searchQuery.trim().toLowerCase();
-      const matched = product.options.find(opt => 
-        opt.name.toLowerCase().includes(q) || (opt.description && opt.description.toLowerCase().includes(q))
-      );
+      const matched = product.options.find(opt => {
+        const optName = typeof opt.name === 'object' ? (opt.name[language] || opt.name.en || '') : String(opt.name || '');
+        const optDesc = typeof opt.description === 'object' ? (opt.description[language] || opt.description.en || '') : String(opt.description || '');
+        return optName.toLowerCase().includes(q) || optDesc.toLowerCase().includes(q);
+      });
       if (matched) matchedOptId = matched.id;
     }
     setSelectedProduct(product);
     setInitialOptionId(matchedOptId || (product.options ? product.options[0].id : null));
   };
 
-  const handleCategorySelect = (category) => {
+  const handleCategorySelect = (slug) => {
     const nextParams = new URLSearchParams(searchParams);
-    if (category === "All") {
+    if (slug === 'all') {
       nextParams.delete('category');
     } else {
-      nextParams.set('category', category);
+      nextParams.set('category', slug);
     }
     setSearchParams(nextParams);
   };
@@ -51,38 +61,53 @@ export default function Products() {
     setSearchParams(nextParams);
   };
 
-  // Filter products by category and search query (matching both product info and option names/descriptions)
+  // Filter products by category and search query (matching localized product info and options)
   const filteredProducts = useMemo(() => {
     return products.filter((item) => {
-      // Category match
-      const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
+      // Category match using stable categoryId/slug
+      const matchesCategory = selectedCategorySlug === 'all' || item.categoryId === selectedCategorySlug;
 
       // Search match
       const q = searchQuery.trim().toLowerCase();
       if (!q) return matchesCategory;
 
-      const nameMatch = item.name.toLowerCase().includes(q);
-      const descMatch = item.description ? item.description.toLowerCase().includes(q) : false;
-      const catMatch = item.category.toLowerCase().includes(q);
-      const optionsMatch = item.options ? item.options.some(opt => 
-        opt.name.toLowerCase().includes(q) || (opt.description && opt.description.toLowerCase().includes(q))
-      ) : false;
+      const getLocalized = (val) => (typeof val === 'object' && val !== null ? (val[language] || val.en || '') : String(val || ''));
+      const nameMatch = getLocalized(item.name).toLowerCase().includes(q);
+      const descMatch = getLocalized(item.description).toLowerCase().includes(q);
+
+      const catObj = productCategories.find(c => c.slug === item.categoryId);
+      const catMatch = catObj ? getLocalized(catObj.name).toLowerCase().includes(q) : false;
+
+      const optionsMatch = item.options ? item.options.some(opt => {
+        const optName = getLocalized(opt.name).toLowerCase();
+        const optDesc = getLocalized(opt.description).toLowerCase();
+        return optName.includes(q) || optDesc.includes(q);
+      }) : false;
 
       return matchesCategory && (nameMatch || descMatch || catMatch || optionsMatch);
     });
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategorySlug, searchQuery, language]);
+
+  const currentCategoryObj = productCategories.find(c => c.slug === selectedCategorySlug);
+  const currentCategoryName = currentCategoryObj 
+    ? (currentCategoryObj.name[language] || currentCategoryObj.name.en) 
+    : '';
 
   return (
     <div className="section section-warm" style={{ paddingTop: '3rem', minHeight: '80vh' }}>
       <div className="container">
         {/* Page Heading & Introduction */}
         <div style={{ maxWidth: '780px', marginBottom: '2.5rem' }}>
-          <span className="section-eyebrow">Catalog & Showroom Selection</span>
+          <span className="section-eyebrow">{t('products.eyebrow')}</span>
           <h1 className="section-title" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)' }}>
-            Our Products
+            {t('products.title')}
           </h1>
           <p className="section-subtitle">
-            Explore our curated selection of MDF &amp; wood boards, UV decorative panels, PVC &amp; UV edge banding, wood paints and Furniture hardware and accessories . Contact us on WhatsApp (+{businessInfo.whatsappNumber}) or call {businessInfo.phoneDisplay} / {businessInfo.secondaryPhone} for stock availability.
+            {t('products.subtitle', {
+              whatsapp: businessInfo.whatsappNumber,
+              phone1: businessInfo.phoneDisplay,
+              phone2: businessInfo.secondaryPhone
+            })}
           </p>
         </div>
 
@@ -94,17 +119,17 @@ export default function Products() {
             <input
               type="text"
               className="catalog-search-input"
-              placeholder="Search by material name, category, or spec (e.g. 18mm, hinge, UV)..."
+              placeholder={t('products.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label="Search materials and hardware"
+              aria-label={t('products.searchAria')}
             />
             {searchQuery && (
               <button 
                 type="button" 
                 className="catalog-search-clear" 
                 onClick={() => setSearchQuery("")}
-                aria-label="Clear search query"
+                aria-label={t('products.searchClear')}
               >
                 <X size={16} />
               </button>
@@ -112,20 +137,24 @@ export default function Products() {
           </div>
 
           {/* Category Filter Pills */}
-          <nav aria-label="Product categories">
+          <nav aria-label={t('footer.categories')}>
             <ul className="catalog-filter-list">
-              {productCategories.map((category) => (
-                <li key={category}>
-                  <button
-                    type="button"
-                    className={`filter-pill ${selectedCategory === category ? 'active' : ''}`}
-                    onClick={() => handleCategorySelect(category)}
-                    aria-pressed={selectedCategory === category}
-                  >
-                    {category}
-                  </button>
-                </li>
-              ))}
+              {productCategories.map((cat) => {
+                const isSelected = selectedCategorySlug === cat.slug;
+                const catLabel = cat.name[language] || cat.name.en;
+                return (
+                  <li key={cat.slug}>
+                    <button
+                      type="button"
+                      className={`filter-pill ${isSelected ? 'active' : ''}`}
+                      onClick={() => handleCategorySelect(cat.slug)}
+                      aria-pressed={isSelected}
+                    >
+                      {catLabel}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
@@ -133,22 +162,22 @@ export default function Products() {
         {/* Results Counter & Reset Action */}
         <div className="catalog-status-bar">
           <div>
-            Showing <strong>{filteredProducts.length}</strong> of <strong>{products.length}</strong> showroom items
-            {selectedCategory !== "All" && (
-              <span> in <strong>{selectedCategory}</strong></span>
+            {t('products.showingCount')} <strong>{filteredProducts.length}</strong> {t('products.ofTotal')} <strong>{products.length}</strong> {t('products.showroomItems')}
+            {selectedCategorySlug !== 'all' && (
+              <span> {t('products.inCategory')} <strong>{currentCategoryName}</strong></span>
             )}
             {searchQuery && (
-              <span> matching "<em>{searchQuery}</em>"</span>
+              <span> {t('products.matchingQuery')} "<em>{searchQuery}</em>"</span>
             )}
           </div>
 
-          {(selectedCategory !== "All" || searchQuery) && (
+          {(selectedCategorySlug !== 'all' || searchQuery) && (
             <button 
               type="button" 
               className="catalog-reset-btn" 
               onClick={handleResetFilters}
             >
-              Reset filters
+              {t('products.resetFilters')}
             </button>
           )}
         </div>
@@ -167,12 +196,12 @@ export default function Products() {
         ) : (
           <div className="catalog-empty">
             <AlertCircle size={40} className="catalog-empty-icon" />
-            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>No materials found</h3>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{t('products.emptyTitle')}</h3>
             <p style={{ maxWidth: '450px', margin: '0 auto 1.5rem auto' }}>
-              We couldn't find any products matching your current search or category filter. Try clearing your search term or browsing all categories.
+              {t('products.emptyDesc')}
             </p>
             <Button variant="primary" onClick={handleResetFilters}>
-              Show All Products
+              {t('products.showAllBtn')}
             </Button>
           </div>
         )}

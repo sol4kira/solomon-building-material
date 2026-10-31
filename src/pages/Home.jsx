@@ -17,12 +17,22 @@ import ProductCard from '../components/ProductCard';
 import ProductModal from '../components/ProductModal';
 import Button from '../components/Button';
 import ImageWithFallback from '../components/ImageWithFallback';
+import { useLanguage } from '../context/LanguageContext';
 
 import uvMarbleBoardImg from '../assets/products/uv-marble-board.jpg';
 import mdfRawBoardImg from '../assets/products/mdf-raw-board.jpg';
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const { language, t } = useLanguage();
+
+  const brandName = typeof businessInfo.name === 'object' 
+    ? businessInfo.name[language] 
+    : businessInfo.name;
+
+  const brandShortName = typeof businessInfo.shortName === 'object' 
+    ? businessInfo.shortName[language] 
+    : businessInfo.shortName;
 
   // Filter featured products for the showcase
   const featuredProducts = products.filter(p => p.featured).slice(0, 8);
@@ -38,38 +48,38 @@ export default function Home() {
             <div className="hero-content">
               <div className="hero-eyebrow">
                 <Sparkles size={16} />
-                <span>Showroom &amp; Workshop Supply</span>
+                <span>{t('home.heroEyebrow')}</span>
               </div>
 
               <h1 className="hero-title">
-                Everything for Your Furniture Projects
+                {t('home.heroTitle')}
               </h1>
 
               <p className="hero-subtitle">
-                MDF boards, UV boards, PVC &amp; UV edge banding, wood paints, adhesives and cabinet hardware in one place.
+                {t('home.heroSubtitle')}
               </p>
 
               <div className="hero-actions">
                 <Button to="/products" variant="primary" size="lg" icon={ArrowRight} iconPosition="right">
-                  Explore Products
+                  {t('home.exploreProducts')}
                 </Button>
                 <Button to="/contact" variant="secondary" size="lg">
-                  Contact Us
+                  {t('home.contactUs')}
                 </Button>
               </div>
 
               <div className="hero-features">
                 <div className="hero-feature-item">
                   <CheckCircle2 size={18} className="hero-feature-icon" />
-                  <span>Showroom to visit</span>
+                  <span>{t('home.featureShowroom')}</span>
                 </div>
                 <div className="hero-feature-item">
                   <CheckCircle2 size={18} className="hero-feature-icon" />
-                  <span>Call {businessInfo.phoneDisplay}</span>
+                  <span>{t('home.featureCall', { phone: businessInfo.phoneDisplay })}</span>
                 </div>
                 <div className="hero-feature-item">
                   <CheckCircle2 size={18} className="hero-feature-icon" />
-                  <span>For carpenters &amp; makers</span>
+                  <span>{t('home.featureMakers')}</span>
                 </div>
               </div>
             </div>
@@ -78,15 +88,15 @@ export default function Home() {
               <div className="hero-image-wrapper">
                 <ImageWithFallback
                   src={uvMarbleBoardImg}
-                  alt="Solomon Building Materials showroom panels and boards"
+                  alt={`${brandName} showroom panels and boards`}
                   className="hero-image"
-                  fallbackText="Solomon Showroom Materials"
+                  fallbackText={brandName}
                 />
                 <div className="hero-badge-overlay">
                   <Store size={22} className="hero-badge-icon" />
                   <div>
-                    <div className="hero-badge-text">{businessInfo.name}</div>
-                    <div className="hero-badge-sub">Boards, Paints &amp; Hardware</div>
+                    <div className="hero-badge-text">{brandName}</div>
+                    <div className="hero-badge-sub">{t('home.heroBadgeSub')}</div>
                   </div>
                 </div>
               </div>
@@ -101,9 +111,9 @@ export default function Home() {
       <section className="section section-white" aria-labelledby="categories-heading">
         <div className="container">
           <SectionHeading
-            eyebrow="Material Range"
-            title="What We Sell"
-            subtitle="Browse our complete stock of furniture boards, high-gloss UV panels, matching edge banding, wood finishes, and cabinet accessories."
+            eyebrow={t('home.categoriesEyebrow')}
+            title={t('home.categoriesTitle')}
+            subtitle={t('home.categoriesSubtitle')}
             center
           />
 
@@ -115,7 +125,7 @@ export default function Home() {
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <Button to="/products" variant="outline" icon={ArrowRight} iconPosition="right">
-              View All Product Categories
+              {t('home.viewAllCategories')}
             </Button>
           </div>
         </div>
@@ -127,9 +137,9 @@ export default function Home() {
       <section className="section section-warm" aria-labelledby="why-heading">
         <div className="container">
           <SectionHeading
-            eyebrow="Showroom Advantages"
-            title={`Why Choose ${businessInfo.shortName}`}
-            subtitle="Supplying interior designers, carpenters, and contractors with dependable materials."
+            eyebrow={t('home.whyEyebrow')}
+            title={t('home.whyTitle', { name: brandShortName })}
+            subtitle={t('home.whySubtitle')}
             center
           />
 
@@ -138,9 +148,9 @@ export default function Home() {
               <div className="why-icon-box">
                 <Layers size={24} />
               </div>
-              <h3 className="why-title">Range for Furniture Makers</h3>
+              <h3 className="why-title">{t('home.whyMakersTitle')}</h3>
               <p className="why-desc">
-                From raw MDF boards to decorative UV marble boards, PVC edge banding, and joinery hardware.
+                {t('home.whyMakersDesc')}
               </p>
             </div>
 
@@ -148,9 +158,9 @@ export default function Home() {
               <div className="why-icon-box">
                 <Paintbrush size={24} />
               </div>
-              <h3 className="why-title">Wood Paints &amp; Adhesives</h3>
+              <h3 className="why-title">{t('home.whyPaintsTitle')}</h3>
               <p className="why-desc">
-                We supply sanding siller, clear lacquer, adhesive, and high-strength cola wood glue directly for workshop needs.
+                {t('home.whyPaintsDesc')}
               </p>
             </div>
 
@@ -158,9 +168,9 @@ export default function Home() {
               <div className="why-icon-box">
                 <Store size={24} />
               </div>
-              <h3 className="why-title">A Shop to Visit</h3>
+              <h3 className="why-title">{t('home.whyShopTitle')}</h3>
               <p className="why-desc">
-                Inspect physical board finishes, edge profile samples, and runner smooth glide in person at our showroom.
+                {t('home.whyShopDesc')}
               </p>
             </div>
 
@@ -168,9 +178,12 @@ export default function Home() {
               <div className="why-icon-box">
                 <PhoneCall size={24} />
               </div>
-              <h3 className="why-title">Direct contact</h3>
+              <h3 className="why-title">{t('home.whyContactTitle')}</h3>
               <p className="why-desc">
-                Call {businessInfo.phoneDisplay} or <br/> {businessInfo.secondaryPhoneDisplay} for direct contact.
+                {t('home.whyContactDesc', { 
+                  phone1: businessInfo.phoneDisplay, 
+                  phone2: businessInfo.secondaryPhoneDisplay 
+                })}
               </p>
             </div>
           </div>
@@ -184,12 +197,12 @@ export default function Home() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
-              <span className="section-eyebrow">Sample Selection</span>
-              <h2 className="section-title" id="featured-heading">Featured Materials</h2>
-              <p className="section-subtitle">MDF board, Wood Panel, edge banding, paints, and hardware from our shop.</p>
+              <span className="section-eyebrow">{t('home.featuredEyebrow')}</span>
+              <h2 className="section-title" id="featured-heading">{t('home.featuredTitle')}</h2>
+              <p className="section-subtitle">{t('home.featuredSubtitle')}</p>
             </div>
             <Button to="/products" variant="primary" icon={ArrowRight} iconPosition="right">
-              View Complete Catalog
+              {t('home.viewCompleteCatalog')}
             </Button>
           </div>
 
@@ -214,25 +227,25 @@ export default function Home() {
             <div className="about-preview-media">
               <ImageWithFallback
                 src={mdfRawBoardImg}
-                alt="Precision wood boards and materials at Solomon Building Materials"
-                fallbackText="Solomon Building Materials"
+                alt={`Precision wood boards and materials at ${brandName}`}
+                fallbackText={brandName}
               />
             </div>
 
             <div className="about-preview-content">
-              <span className="section-eyebrow">Our Story</span>
+              <span className="section-eyebrow">{t('home.aboutPreviewEyebrow')}</span>
               <h2 className="section-title" id="about-preview-heading">
-                Dedicated to Furniture Makers &amp; interior designers
+                {t('home.aboutPreviewTitle')}
               </h2>
               <p>
-                {businessInfo.name} is a family-owned building materials shop founded to provide furniture makers, interior designers, contractors, and home DIYers with honest guidance and quality materials.
+                {t('home.aboutPreviewP1', { name: brandName })}
               </p>
               <p>
-                Whether you need high-grade MDF boards, UV panels, various adhesives. we can provide reliable stokes and delivery.
+                {t('home.aboutPreviewP2')}
               </p>
               <div style={{ marginTop: '0.5rem' }}>
                 <Button to="/about" variant="secondary" icon={ArrowRight} iconPosition="right">
-                  About {businessInfo.shortName}
+                  {t('home.aboutPreviewBtn', { name: brandShortName })}
                 </Button>
               </div>
             </div>
@@ -247,20 +260,20 @@ export default function Home() {
         <div className="container">
           <div className="contact-cta-box">
             <div className="contact-cta-inner">
-              <span className="section-eyebrow">Get In Touch</span>
+              <span className="section-eyebrow">{t('home.ctaEyebrow')}</span>
               <h2 className="section-title" id="cta-heading">
-                Ready to Start Your Furniture Project?
+                {t('home.ctaTitle')}
               </h2>
               <p className="section-subtitle">
-                Contact our showroom.
+                {t('home.ctaSubtitle')}
               </p>
 
               <div className="contact-cta-actions">
                 <Button to="/contact" variant="primary" size="lg">
-                  Contact Us
+                  {t('home.ctaContactBtn')}
                 </Button>
                 <Button to="/products" variant="secondary" size="lg">
-                  Explore Complete Catalog
+                  {t('home.ctaCatalogBtn')}
                 </Button>
               </div>
             </div>

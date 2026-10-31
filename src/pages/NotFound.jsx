@@ -1,27 +1,30 @@
 import React from 'react';
 import { Home } from 'lucide-react';
 import Button from '../components/Button';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function NotFound() {
+  const { t } = useLanguage();
+
   return (
     <div className="section section-warm" style={{ minHeight: '70vh', display: 'flex', alignItems: 'center' }}>
       <div className="container" style={{ textAlign: 'center', maxWidth: '600px' }}>
         <span className="badge" style={{ marginBottom: '1rem' }}>
-          404 &bull; Page Not Found
+          {t('notFound.badge')}
         </span>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-          This page could not be found
+          {t('notFound.title')}
         </h1>
         <p style={{ marginBottom: '2rem', fontSize: '1.0625rem' }}>
-          The link you followed may be broken or the material page may have been moved. Return to the home page or browse our complete product catalog.
+          {t('notFound.desc')}
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button to="/" variant="primary" icon={Home}>
-            Back to Home
+            {t('notFound.backHome')}
           </Button>
           <Button to="/products" variant="secondary">
-            Browse Product Catalog
+            {t('notFound.browseCatalog')}
           </Button>
         </div>
       </div>

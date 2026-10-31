@@ -96,6 +96,32 @@ button, input, textarea, select {
   outline-offset: 3px;
 }
 
+/* Ethiopic / Amharic Typography Enhancements */
+html[lang="am"] body {
+  font-family: var(--font-ethiopic);
+  line-height: 1.75;
+}
+
+html[lang="am"] h1,
+html[lang="am"] h2,
+html[lang="am"] h3,
+html[lang="am"] h4,
+html[lang="am"] h5,
+html[lang="am"] h6 {
+  font-family: var(--font-ethiopic);
+  line-height: 1.35;
+}
+
+html[lang="am"] .btn,
+html[lang="am"] .nav-link,
+html[lang="am"] .mobile-nav-link,
+html[lang="am"] .badge,
+html[lang="am"] .section-eyebrow,
+html[lang="am"] .brand-title,
+html[lang="am"] .brand-subtitle {
+  font-family: var(--font-ethiopic);
+}
+
 /* Layout Container */
 .container {
   width: 100%;

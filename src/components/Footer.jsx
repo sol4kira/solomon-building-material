@@ -3,10 +3,33 @@ import { Link } from 'react-router-dom';
 import { Phone, MessageSquare, MapPin, Clock } from 'lucide-react';
 import { businessInfo } from '../data/businessInfo';
 import { featuredCategories } from '../data/categories';
+import { useLanguage } from '../context/LanguageContext';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer() {
+  const { language, t } = useLanguage();
+
+  const brandName = typeof businessInfo.name === 'object' 
+    ? businessInfo.name[language] 
+    : businessInfo.name;
+
+  const brandTagline = typeof businessInfo.tagline === 'object' 
+    ? businessInfo.tagline[language] 
+    : businessInfo.tagline;
+
+  const brandDescription = typeof businessInfo.description === 'object' 
+    ? businessInfo.description[language] 
+    : businessInfo.description;
+
+  const addressStreet = typeof businessInfo.address.street === 'object'
+    ? businessInfo.address.street[language]
+    : businessInfo.address.street;
+
+  const addressCityState = typeof businessInfo.address.cityStateZip === 'object'
+    ? businessInfo.address.cityStateZip[language]
+    : businessInfo.address.cityStateZip;
+
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="container">
@@ -14,53 +37,57 @@ export default function Footer() {
           {/* Brand & Description */}
           <div className="footer-brand">
             <div>
-              <span className="footer-brand-title">{businessInfo.name}</span>
-              <div className="footer-brand-subtitle">{businessInfo.tagline}</div>
+              <span className="footer-brand-title">{brandName}</span>
+              <div className="footer-brand-subtitle">{brandTagline}</div>
             </div>
             <p className="footer-desc">
-              {businessInfo.description}
+              {brandDescription}
             </p>
           </div>
 
           {/* Quick Navigation Links */}
           <div>
-            <h3 className="footer-heading">Navigation</h3>
+            <h3 className="footer-heading">{t('footer.navigation')}</h3>
             <ul className="footer-links">
               <li>
-                <Link to="/" className="footer-link">Home</Link>
+                <Link to="/" className="footer-link">{t('footer.home')}</Link>
               </li>
               <li>
-                <Link to="/products" className="footer-link">Product Catalog</Link>
+                <Link to="/products" className="footer-link">{t('footer.catalog')}</Link>
               </li>
               <li>
-                <Link to="/about" className="footer-link">About Solomon</Link>
+                <Link to="/about" className="footer-link">{t('footer.about')}</Link>
               </li>
               <li>
-                <Link to="/contact" className="footer-link">Contact &amp; Location</Link>
+                <Link to="/contact" className="footer-link">{t('footer.contactLocation')}</Link>
               </li>
             </ul>
           </div>
 
           {/* Category Quick Links */}
           <div>
-            <h3 className="footer-heading">Categories</h3>
+            <h3 className="footer-heading">{t('footer.categories')}</h3>
             <ul className="footer-links">
-              {featuredCategories.map((cat) => (
-                <li key={cat.id}>
-                  <Link 
-                    to={`/products?category=${encodeURIComponent(cat.targetFilter)}`} 
-                    className="footer-link"
-                  >
-                    {cat.title}
-                  </Link>
-                </li>
-              ))}
+              {featuredCategories.map((cat) => {
+                const title = typeof cat.title === 'object' ? cat.title[language] : cat.title;
+                const slug = cat.slug || cat.id;
+                return (
+                  <li key={cat.id}>
+                    <Link 
+                      to={`/products?category=${encodeURIComponent(slug)}`} 
+                      className="footer-link"
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           {/* Contact Details & Hours */}
           <div>
-            <h3 className="footer-heading">Showroom &amp; Contact</h3>
+            <h3 className="footer-heading">{t('footer.contact')}</h3>
             
             <div className="footer-contact-item">
               <Phone size={18} className="footer-contact-icon" />
@@ -92,9 +119,9 @@ export default function Footer() {
             <div className="footer-contact-item">
               <MapPin size={18} className="footer-contact-icon" />
               <div>
-                <div>{businessInfo.address.street}</div>
+                <div>{addressStreet}</div>
                 <div style={{ fontSize: '0.8125rem', color: '#9E9184' }}>
-                  {businessInfo.address.cityStateZip}
+                  {addressCityState}
                 </div>
               </div>
             </div>
@@ -102,10 +129,15 @@ export default function Footer() {
             <div className="footer-contact-item">
               <Clock size={18} className="footer-contact-icon" />
               <div>
-                <div>{businessInfo.hours[0].days}: {businessInfo.hours[0].time}</div>
-                <div style={{ fontSize: '0.8125rem', color: '#9E9184' }}>
-                  {businessInfo.hours[1]?.days}: {businessInfo.hours[1]?.time}
-                </div>
+                {businessInfo.hours.map((h, i) => {
+                  const days = typeof h.days === 'object' ? h.days[language] : h.days;
+                  const time = typeof h.time === 'object' ? h.time[language] : h.time;
+                  return (
+                    <div key={i} style={i > 0 ? { fontSize: '0.8125rem', color: '#9E9184' } : undefined}>
+                      {days}: {time}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -114,10 +146,10 @@ export default function Footer() {
         {/* Bottom copyright notice */}
         <div className="footer-bottom">
           <p style={{ color: 'inherit', fontSize: 'inherit' }}>
-            &copy; {CURRENT_YEAR} {businessInfo.name}. All rights reserved.
+            &copy; {CURRENT_YEAR} {brandName}. {t('footer.rights')}
           </p>
           <p style={{ color: '#8A7B6E', fontSize: '0.8125rem' }}>
-            Furniture materials, boards &amp; hardware showroom
+            {t('footer.subtitle')}
           </p>
         </div>
       </div>

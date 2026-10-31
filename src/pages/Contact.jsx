@@ -2,27 +2,36 @@ import React from 'react';
 import { 
   Phone, 
   MessageSquare, 
-  Send,
+  Send, 
   MapPin, 
   Clock, 
   ExternalLink, 
-  CheckCircle2
+  CheckCircle2 
 } from 'lucide-react';
 import { businessInfo } from '../data/businessInfo';
 import Button from '../components/Button';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { language, t } = useLanguage();
+  const bName = businessInfo.name[language] || businessInfo.name.en;
+  const street = businessInfo.address.street[language] || businessInfo.address.street.en;
+  const city = businessInfo.address.city[language] || businessInfo.address.city.en;
+  const country = businessInfo.address.country[language] || businessInfo.address.country.en;
+  const cityStateZip = businessInfo.address.cityStateZip[language] || businessInfo.address.cityStateZip.en;
+  const note = businessInfo.address.note[language] || businessInfo.address.note.en;
+
   return (
     <div className="section section-warm" style={{ paddingTop: '3.5rem', minHeight: '80vh' }}>
       <div className="container">
         {/* Page Heading & Guidance */}
         <div style={{ maxWidth: '780px', marginBottom: '3rem' }}>
-          <span className="section-eyebrow">Get In Touch</span>
+          <span className="section-eyebrow">{t('contact.eyebrow')}</span>
           <h1 className="section-title" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)' }}>
-            Contact {businessInfo.name}
+            {t('contact.title', { name: bName })}
           </h1>
           <p className="section-subtitle">
-            Visit our showroom or get in touch for questions regarding MDF boards, UV decorative panels, PVC and UV edge banding, wood paints, adhesives, and furniture accessories.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -33,9 +42,9 @@ export default function Contact() {
             <div className="contact-card-icon">
               <Phone size={22} />
             </div>
-            <h2 className="contact-card-title">Phone Call</h2>
+            <h2 className="contact-card-title">{t('contact.cardPhoneTitle')}</h2>
             <p className="contact-card-detail">
-              Call our showroom directly during business hours.
+              {t('contact.cardPhoneDesc')}
             </p>
             <div style={{ marginTop: 'auto', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
               <a 
@@ -43,14 +52,14 @@ export default function Contact() {
                 className="btn btn-secondary btn-sm"
                 style={{ display: 'inline-flex', width: '100%', justifyContent: 'center' }}
               >
-                <Phone size={14} /> Call {businessInfo.phoneDisplay}
+                <Phone size={14} /> {t('nav.callNumber', { number: businessInfo.phoneDisplay })}
               </a>
               <a 
                 href={`tel:${businessInfo.secondaryPhone}`} 
                 className="btn btn-secondary btn-sm"
                 style={{ display: 'inline-flex', width: '100%', justifyContent: 'center' }}
               >
-                <Phone size={14} /> Call {businessInfo.secondaryPhoneDisplay}
+                <Phone size={14} /> {t('nav.callNumber', { number: businessInfo.secondaryPhoneDisplay })}
               </a>
             </div>
           </div>
@@ -60,9 +69,9 @@ export default function Contact() {
             <div className="contact-card-icon" style={{ backgroundColor: '#E7F9EE', color: '#25D366' }}>
               <MessageSquare size={22} />
             </div>
-            <h2 className="contact-card-title">WhatsApp &amp; Telegram</h2>
+            <h2 className="contact-card-title">{t('contact.cardMessagingTitle')}</h2>
             <p className="contact-card-detail">
-              Direct chat on our official line (+{businessInfo.whatsappNumber}).
+              {t('contact.cardMessagingDesc', { whatsapp: businessInfo.whatsappNumber })}
             </p>
             <div style={{ marginTop: 'auto', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
               <Button
@@ -93,12 +102,12 @@ export default function Contact() {
             <div className="contact-card-icon">
               <MapPin size={22} />
             </div>
-            <h2 className="contact-card-title">Showroom Location</h2>
+            <h2 className="contact-card-title">{t('contact.cardLocationTitle')}</h2>
             <p className="contact-card-detail">
-              <strong>{businessInfo.address.street} {businessInfo.address.city},{businessInfo.address.country}</strong><br />
-              {businessInfo.address.cityStateZip}<br />
+              <strong>{street} {city}, {country}</strong><br />
+              {cityStateZip}<br />
               <span style={{ fontSize: '0.8125rem', color: 'var(--color-text-light)' }}>
-                {businessInfo.address.note}
+                {note}
               </span>
             </p>
             {businessInfo.address.googleMapsUrl && (
@@ -112,7 +121,7 @@ export default function Contact() {
                   icon={ExternalLink}
                   fullWidth
                 >
-                  Open in Google Maps
+                  {t('contact.openMaps')}
                 </Button>
               </div>
             )}
@@ -123,13 +132,13 @@ export default function Contact() {
             <div className="contact-card-icon">
               <Clock size={22} />
             </div>
-            <h2 className="contact-card-title">Operating Hours</h2>
+            <h2 className="contact-card-title">{t('contact.cardHoursTitle')}</h2>
             <div style={{ marginTop: '0.25rem' }}>
               <ul className="hours-list">
                 {businessInfo.hours.map((h, i) => (
                   <li key={i} className="hours-row">
-                    <span className="hours-days">{h.days}</span>
-                    <span className="hours-time">{h.time}</span>
+                    <span className="hours-days">{h.days[language] || h.days.en}</span>
+                    <span className="hours-time">{h.time[language] || h.time.en}</span>
                   </li>
                 ))}
               </ul>
@@ -150,7 +159,7 @@ export default function Contact() {
         }}>
           <CheckCircle2 size={20} color="var(--color-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
           <div style={{ fontSize: '0.875rem', lineHeight: '1.5', color: 'var(--color-text-secondary)' }}>
-            <strong style={{ color: 'var(--color-text-main)' }}>Visiting our shop:</strong> We stock full-sized MDF sheets, UV decorative boards, edge banding rolls, paints, and hardware. If you are arranging vehicle transport for sheet loading, call us ahead so we can prepare your order.
+            <strong style={{ color: 'var(--color-text-main)' }}>{t('contact.guidelinesTitle')}</strong> {t('contact.guidelinesDesc')}
           </div>
         </div>
       </div>

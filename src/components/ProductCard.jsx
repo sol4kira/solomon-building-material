@@ -2,10 +2,28 @@ import React from 'react';
 import { Eye, Layers } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
 import Button from './Button';
+import { useLanguage } from '../context/LanguageContext';
+import { productCategories } from '../data/categories';
 
 export default function ProductCard({ product, onSelect }) {
-  const { name, category, description, image, options } = product;
+  const { language, t } = useLanguage();
+  const { image, options, categoryId } = product;
   const hasOptions = options && options.length > 1;
+
+  const name = typeof product.name === 'object' 
+    ? product.name[language] 
+    : product.name;
+
+  const description = typeof product.description === 'object' 
+    ? product.description[language] 
+    : product.description;
+
+  const categoryObj = productCategories.find(
+    (c) => c.id === categoryId || c.slug === categoryId
+  );
+  const categoryName = categoryObj 
+    ? categoryObj.name[language] 
+    : (typeof product.category === 'object' ? product.category[language] : (product.category || ''));
 
   return (
     <article className="product-card">
@@ -18,14 +36,14 @@ export default function ProductCard({ product, onSelect }) {
           src={image}
           alt={name}
           className="product-card-image"
-          fallbackText={category}
+          fallbackText={categoryName}
         />
-        <span className="product-card-category">{category}</span>
+        {categoryName && <span className="product-card-category">{categoryName}</span>}
 
         {hasOptions && (
-          <span className="product-card-options-pill" title={`${options.length} options available`}>
+          <span className="product-card-options-pill" title={t('common.optionsCount', { count: options.length })}>
             <Layers size={12} />
-            <span>{options.length} Types</span>
+            <span>{t('common.typesCount', { count: options.length })}</span>
           </span>
         )}
       </div>
@@ -41,9 +59,14 @@ export default function ProductCard({ product, onSelect }) {
 
         {hasOptions && (
           <div className="product-card-options-summary">
-            <span className="options-badge">{options.length} Options</span>
-            <span className="options-preview-text" title={options.map(o => o.name).join(', ')}>
-              {options.map(o => o.name.replace(/\s*\([^)]*\)/, '')).join(' · ')}
+            <span className="options-badge">{t('common.optionsCount', { count: options.length })}</span>
+            <span 
+              className="options-preview-text" 
+              title={options.map((o) => (typeof o.name === 'object' ? o.name[language] : o.name)).join(', ')}
+            >
+              {options
+                .map((o) => (typeof o.name === 'object' ? o.name[language] : o.name).replace(/\s*\([^)]*\)/, ''))
+                .join(' · ')}
             </span>
           </div>
         )}
@@ -52,7 +75,7 @@ export default function ProductCard({ product, onSelect }) {
           <p className="product-card-desc">{description}</p>
         )}
 
-        {/* Card Actions: Single clean View Details button */}
+        {/* Card Actions */}
         <div className="product-card-actions" style={{ marginTop: 'auto', paddingTop: '0.75rem' }}>
           <Button
             variant="secondary"
@@ -61,7 +84,9 @@ export default function ProductCard({ product, onSelect }) {
             fullWidth
             onClick={() => onSelect && onSelect(product)}
           >
-            {hasOptions ? `View Details & ${options.length} Options` : 'View Details'}
+            {hasOptions 
+              ? t('common.viewDetailsWithOptions', { count: options.length }) 
+              : t('common.viewDetails')}
           </Button>
         </div>
       </div>

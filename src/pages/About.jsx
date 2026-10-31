@@ -12,11 +12,15 @@ import { businessInfo } from '../data/businessInfo';
 import SectionHeading from '../components/SectionHeading';
 import Button from '../components/Button';
 import ImageWithFallback from '../components/ImageWithFallback';
+import { useLanguage } from '../context/LanguageContext';
 
 import mdfRawBoardImg from '../assets/products/mdf-raw-board.jpg';
 import midoSealerImg from '../assets/products/mido-sealer.jpg';
 
 export default function About() {
+  const { language, t } = useLanguage();
+  const bName = businessInfo.name[language] || businessInfo.name.en;
+
   return (
     <>
       {/* ====================================================================
@@ -25,12 +29,12 @@ export default function About() {
       <section className="section section-warm" style={{ paddingBottom: '2.5rem' }}>
         <div className="container">
           <div className="about-hero">
-            <span className="section-eyebrow">Our Business</span>
+            <span className="section-eyebrow">{t('about.heroEyebrow')}</span>
             <h1 className="section-title">
-              About {businessInfo.name}
+              {t('about.heroTitle', { name: bName })}
             </h1>
             <p className="section-subtitle">
-              A family-owned building materials shop providing quality wood boards, decorative UV panels, edge banding, wood paints, and furniture hardware for craftsmen, workshops, and homeowners.
+              {t('about.heroSubtitle')}
             </p>
           </div>
         </div>
@@ -43,37 +47,37 @@ export default function About() {
         <div className="container">
           <div className="about-preview-grid">
             <div className="about-preview-content">
-              <span className="section-eyebrow">The Shop</span>
+              <span className="section-eyebrow">{t('about.shopEyebrow')}</span>
               <h2 className="section-title">
-                Supplying the Building Blocks of Fine Cabinetry
+                {t('about.shopTitle')}
               </h2>
               <p>
-                At {businessInfo.name}, we believe good furniture starts with the right substrate, proper surface finishes, and dependable hardware. As a family-owned business, we work closely with local carpenters, interior designers, and contractors who need reliable supplies for their daily craft.
+                {t('about.shopP1', { name: bName })}
               </p>
               <p>
-                Our shop is focused specifically on furniture-making, and interior finishing:
+                {t('about.shopP2')}
               </p>
               
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.625rem', marginTop: '0.5rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>MDF Boards:</strong> Raw MDF sheets and laminated sheets.</span>
+                  <span><strong>{t('about.mdfLabel')}</strong> {t('about.mdfDesc')}</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>UV Decorative Boards:</strong> Ultra high-gloss marble patterns and super-matte surfaces.</span>
+                  <span><strong>{t('about.uvLabel')}</strong> {t('about.uvDesc')}</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>Edge Banding:</strong> Standard PVC edge banding and matching high-gloss UV edge tape.</span>
+                  <span><strong>{t('about.edgeLabel')}</strong> {t('about.edgeDesc')}</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>Wood Paints &amp; Glues:</strong>Siller sanding sealer, clear lacquer,Adhesives, and wood glue.</span>
+                  <span><strong>{t('about.paintsLabel')}</strong> {t('about.paintsDesc')}</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                   <Check size={18} color="var(--color-primary)" />
-                  <span><strong>Functional Hardware:</strong> Soft-close hydraulic hinges, telescopic ball-bearing drawer runners, and handles.</span>
+                  <span><strong>{t('about.hardwareLabel')}</strong> {t('about.hardwareDesc')}</span>
                 </li>
               </ul>
             </div>
@@ -91,13 +95,13 @@ export default function About() {
           <div className="history-card">
             <div className="placeholder-notice">
               <Edit3 size={14} />
-              <span>Shop Philosophy &amp; Guidance</span>
+              <span>{t('about.philosophyBadge')}</span>
             </div>
             <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>
-              Committed to Furniture Makers and Woodworkers
+              {t('about.philosophyTitle')}
             </h3>
             <p style={{ marginBottom: '1.5rem' }}>
-              {businessInfo.name} was established to bring workshop-ready materials under one roof. We understand the practical challenges of carpentry: finding consistent sheet thicknesses, matching edge banding seamlessly to board decors, having reliable sanding siller and clear lacquer, and choosing drawer slides that won't fail after years of heavy use. We welcome visitors to inspect samples in our showroom and consult with us directly.
+              {t('about.philosophyP1', { name: bName })}
             </p>
 
             <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', maxHeight: '300px' }}>
@@ -118,9 +122,9 @@ export default function About() {
       <section className="section section-warm">
         <div className="container">
           <SectionHeading
-            eyebrow="Our Customers"
-            title="Who We Serve"
-            subtitle="We provide direct material supply and friendly service to a wide community of makers."
+            eyebrow={t('about.whoEyebrow')}
+            title={t('about.whoTitle')}
+            subtitle={t('about.whoSubtitle')}
             center
           />
 
@@ -129,9 +133,9 @@ export default function About() {
               <div className="serving-icon">
                 <Hammer size={22} />
               </div>
-              <h3 style={{ fontSize: '1.125rem' }}>Carpenters</h3>
+              <h3 style={{ fontSize: '1.125rem' }}>{t('about.customerCarpentersTitle')}</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Reliable raw and moisture-resistant MDF boards, edge banding, and fast-setting adhesive for daily projects.
+                {t('about.customerCarpentersDesc')}
               </p>
             </div>
 
@@ -139,9 +143,9 @@ export default function About() {
               <div className="serving-icon">
                 <Layers size={22} />
               </div>
-              <h3 style={{ fontSize: '1.125rem' }}>Cabinet &amp; Kitchen Makers</h3>
+              <h3 style={{ fontSize: '1.125rem' }}>{t('about.customerCabinetTitle')}</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                High-gloss UV marble boards, UV edge banding, concealed soft-close hinges, and smooth telescopic drawer runners.
+                {t('about.customerCabinetDesc')}
               </p>
             </div>
 
@@ -149,9 +153,9 @@ export default function About() {
               <div className="serving-icon">
                 <Briefcase size={22} />
               </div>
-              <h3 style={{ fontSize: '1.125rem' }}>Interior Contractors</h3>
+              <h3 style={{ fontSize: '1.125rem' }}>{t('about.customerContractorsTitle')}</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Consistent decorative panels, feature wall surfaces, commercial hardware, and wardrobe fittings for flawless works.
+                {t('about.customerContractorsDesc')}
               </p>
             </div>
 
@@ -159,9 +163,9 @@ export default function About() {
               <div className="serving-icon">
                 <Wrench size={22} />
               </div>
-              <h3 style={{ fontSize: '1.125rem' }}>Finishers &amp; Polishers</h3>
+              <h3 style={{ fontSize: '1.125rem' }}>{t('about.customerFinishersTitle')}</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Siller sanding sealer for sealing wood pores, protective clear lacquer for gloss finishes, and Adhesives for flawless repairs.
+                {t('about.customerFinishersDesc')}
               </p>
             </div>
 
@@ -169,9 +173,9 @@ export default function About() {
               <div className="serving-icon">
                 <HomeIcon size={22} />
               </div>
-              <h3 style={{ fontSize: '1.125rem' }}>Homeowners &amp; DIYers</h3>
+              <h3 style={{ fontSize: '1.125rem' }}>{t('about.customerDiyTitle')}</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                Helpful advice for custom shelving, wardrobe refreshes, replacing worn hinges, or picking up handles and paint supplies.
+                {t('about.customerDiyDesc')}
               </p>
             </div>
           </div>
@@ -185,20 +189,20 @@ export default function About() {
         <div className="container">
           <div className="contact-cta-box">
             <div className="contact-cta-inner">
-              <span className="section-eyebrow">Visit Our Showroom</span>
+              <span className="section-eyebrow">{t('about.ctaEyebrow')}</span>
               <h2 className="section-title">
-                See Our Materials in Person
+                {t('about.ctaTitle')}
               </h2>
               <p className="section-subtitle">
-                Visit our shop to inspect board finishes, test runner glide, and pick up paints, glues, and hardware for your next project.
+                {t('about.ctaSubtitle')}
               </p>
 
               <div className="contact-cta-actions">
                 <Button to="/contact" variant="primary" size="lg">
-                  Showroom Location &amp; Hours
+                  {t('about.ctaHoursBtn')}
                 </Button>
                 <Button to="/products" variant="secondary" size="lg">
-                  Explore Full Catalog
+                  {t('about.ctaCatalogBtn')}
                 </Button>
               </div>
             </div>

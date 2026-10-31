@@ -7,71 +7,168 @@ import edgeBindingPvcImg from '../assets/products/edge-binding-pvc.jpg';
 import mainGate from '../assets/products/maingate-primery.jpg';
 import hingeHydraulicImg from '../assets/products/hinge-hydraulic.jpg';
 import drawerHandlesImg from '../assets/products/drawer-handles.jpg';
-import midoSealerImg from '../assets/products/mido-sealer.jpg'
+import midoSealerImg from '../assets/products/mido-sealer.jpg';
 
 export const featuredCategories = [
   {
     id: "mdf-wood-boards",
-    title: "MDF & Wood Boards",
     slug: "mdf-wood-boards",
-    targetFilter: "MDF & Wood Boards",
-    description: "Raw MDF, laminated and different thickness",
+    title: {
+      en: "MDF & Wood Boards",
+      am: "MDF & Wood Boards" // TODO: translate
+    },
+    description: {
+      en: "Raw MDF, laminated and different thickness",
+      am: "Raw MDF, laminated and different thickness" // TODO: translate
+    },
     image: mdfRawBoardImg,
-    badge: "Core Boards"
+    badge: {
+      en: "Core Boards",
+      am: "Core Boards" // TODO: translate
+    }
   },
   {
     id: "edge-banding",
-    title: "Edge Banding (PVC & UV)",
     slug: "edge-banding",
-    targetFilter: "Edge Banding (PVC & UV)",
-    description: "Standard PVC edge banding and mirror high-gloss UV edge banding color-matched for decorative panels.",
+    title: {
+      en: "Edge Banding (PVC & UV)",
+      am: "Edge Banding (PVC & UV)" // TODO: translate
+    },
+    description: {
+      en: "Standard PVC edge banding and mirror high-gloss UV edge banding color-matched for decorative panels.",
+      am: "Standard PVC edge banding and mirror high-gloss UV edge banding color-matched for decorative panels." // TODO: translate
+    },
     image: edgeBindingPvcImg,
-    badge: "Finishing"
+    badge: {
+      en: "Finishing",
+      am: "Finishing" // TODO: translate
+    }
   },
   {
     id: "wood-paints-adhesives",
-    title: "Wood Paints & Adhesives",
     slug: "wood-paints-adhesives",
-    targetFilter: "Wood Paints & Finishes",
-    description: "Adhesives, Wood Glues, and Wood Paints",
+    title: {
+      en: "Wood Paints & Adhesives",
+      am: "Wood Paints & Adhesives" // TODO: translate
+    },
+    description: {
+      en: "Adhesives, Wood Glues, and Wood Paints",
+      am: "Adhesives, Wood Glues, and Wood Paints" // TODO: translate
+    },
     image: midoSealerImg,
-    badge: "Paints & Glue"
+    badge: {
+      en: "Paints & Glue",
+      am: "Paints & Glue" // TODO: translate
+    }
   },
   {
     id: "hinges-sliders",
-    title: "Hinges & Sliders",
     slug: "hinges-sliders",
-    targetFilter: "Hinges & Sliders",
-    description: "Concealed hydraulic soft-close hinges and heavy-duty telescopic ball-bearing drawer runners.",
+    title: {
+      en: "Hinges & Sliders",
+      am: "Hinges & Sliders" // TODO: translate
+    },
+    description: {
+      en: "Concealed hydraulic soft-close hinges and heavy-duty telescopic ball-bearing drawer runners.",
+      am: "Concealed hydraulic soft-close hinges and heavy-duty telescopic ball-bearing drawer runners." // TODO: translate
+    },
     image: hingeHydraulicImg,
-    badge: "Motion Hardware"
+    badge: {
+      en: "Motion Hardware",
+      am: "Motion Hardware" // TODO: translate
+    }
   },
   {
     id: "handles-accessories",
-    title: "Handles & Accessories",
     slug: "handles-accessories",
-    targetFilter: "Handles & Accessories",
-    description: "Modern drawer handles, silver aluminum pulls, and cabinet accessories.",
+    title: {
+      en: "Handles & Accessories",
+      am: "Handles & Accessories" // TODO: translate
+    },
+    description: {
+      en: "Modern drawer handles, silver aluminum pulls, and cabinet accessories.",
+      am: "Modern drawer handles, silver aluminum pulls, and cabinet accessories." // TODO: translate
+    },
     image: drawerHandlesImg,
-    badge: "Hardware & Trim"
+    badge: {
+      en: "Hardware & Trim",
+      am: "Hardware & Trim" // TODO: translate
+    }
   },
   {
     id: "door-handle",
-    title: "Main Gate & Internal Door Handle",
     slug: "door-handle",
-    targetFilter: "Main Gate & Internal Door Handles",
-    description: "Decorative and quality door handle for both external and internal doors.",
+    title: {
+      en: "Main Gate & Internal Door Handles",
+      am: "Main Gate & Internal Door Handles" // TODO: translate
+    },
+    description: {
+      en: "Decorative and quality door handle for both external and internal doors.",
+      am: "Decorative and quality door handle for both external and internal doors." // TODO: translate
+    },
     image: mainGate,
-    badge: "Door Handle"
-  },
+    badge: {
+      en: "Door Handle",
+      am: "Door Handle" // TODO: translate
+    }
+  }
 ];
 
 export const productCategories = [
-  "All",
-  "MDF & Wood Boards",
-  "Edge Banding (PVC & UV)",
-  "Wood Paints & Finishes",
-  "Hinges & Sliders",
-  "Handles & Accessories",
-  "Main Gate & Internal Door Handle"
+  {
+    id: "all",
+    slug: "all",
+    name: {
+      en: "All",
+      am: "All" // TODO: translate
+    }
+  },
+  {
+    id: "mdf-wood-boards",
+    slug: "mdf-wood-boards",
+    name: {
+      en: "MDF & Wood Boards",
+      am: "MDF & Wood Boards" // TODO: translate
+    }
+  },
+  {
+    id: "edge-banding",
+    slug: "edge-banding",
+    name: {
+      en: "Edge Banding (PVC & UV)",
+      am: "Edge Banding (PVC & UV)" // TODO: translate
+    }
+  },
+  {
+    id: "wood-paints-adhesives",
+    slug: "wood-paints-adhesives",
+    name: {
+      en: "Wood Paints & Adhesives",
+      am: "Wood Paints & Adhesives" // TODO: translate
+    }
+  },
+  {
+    id: "hinges-sliders",
+    slug: "hinges-sliders",
+    name: {
+      en: "Hinges & Sliders",
+      am: "Hinges & Sliders" // TODO: translate
+    }
+  },
+  {
+    id: "handles-accessories",
+    slug: "handles-accessories",
+    name: {
+      en: "Handles & Accessories",
+      am: "Handles & Accessories" // TODO: translate
+    }
+  },
+  {
+    id: "door-handle",
+    slug: "door-handle",
+    name: {
+      en: "Main Gate & Internal Door Handles",
+      am: "Main Gate & Internal Door Handles" // TODO: translate
+    }
+  }
 ];
